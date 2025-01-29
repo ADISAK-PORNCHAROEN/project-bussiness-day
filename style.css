@@ -1,0 +1,368 @@
+body {
+    margin: 0;
+    padding: 20px;
+    overflow: hidden;
+    background: #fff;
+    font-family: Arial, sans-serif;
+}
+
+.scene-container {
+    position: relative;
+    width: calc(100vw - 40px);
+    height: calc(100vh - 40px);
+    overflow: hidden;
+    border-radius: 30px;
+    background: #e0f4f0;
+}
+
+.scrollable-content {
+    position: absolute;
+    height: 100%;
+    width: 400%;
+    display: flex;
+    transition: transform 0.5s ease;
+    border-radius: 30px;
+    /* เพิ่ม border radius */
+    /* overflow: hidden; */
+}
+
+.mountain-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* เปลี่ยนจาก 60% เป็น 100% */
+    overflow: hidden;
+    z-index: 1;
+}
+
+.mountain-bg img {
+    width: 100%;
+    height: 80%;
+    object-position: center top;
+    /* ปรับตำแหน่งภาพให้ชิดบน */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.mountain-bg-flip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* เปลี่ยนจาก 60% เป็น 100% */
+    overflow: hidden;
+    z-index: 1;
+}
+
+.mountain-bg-flip img {
+    transform: scaleX(-1);
+    width: 100%;
+    height: 80%;
+    object-position: center top;
+    /* ปรับตำแหน่งภาพให้ชิดบน */
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.background {
+    position: relative;
+    width: calc((100vw - 40px));
+    height: 100%;
+    flex-shrink: 0;
+    background: linear-gradient(to bottom, transparent 0%, #e0f4f0 70%);
+    /* overflow: hidden; */
+}
+
+/* เพิ่มส่วนถนนดิน */
+.dirt-road {
+    position: absolute;
+    bottom: 0%;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: #fff1d6;
+    z-index: 2;
+}
+
+/* เพิ่มส่วนเนินหญ้า */
+.grass-hill {
+    position: absolute;
+    bottom: 150px;
+    left: 0;
+    width: 100%;
+    height: 170px;
+    background: #d1d76f;
+    z-index: 2;
+}
+
+/* ปรับตำแหน่งต้นไม้ให้อยู่บนเนินหญ้า */
+.tree {
+    position: absolute;
+    bottom: 200px;
+    /* ปรับตำแหน่งให้อยู่บนเนินหญ้า */
+    z-index: 3;
+    /* transition: transform 0.5s ease; */
+}
+
+.bin {
+    position: fixed;
+    left: 20%;
+    bottom: 15%;
+    width: 10vw;
+    /* ปรับให้สัมพันธ์กับความกว้างหน้าจอ */
+    min-width: 80px;
+    /* กำหนดขนาดขั้นต่ำ */
+    height: 120px;
+    transition: transform 0.3s ease;
+    z-index: 100;
+}
+
+.bin img {
+    width: 150px;
+}
+
+.nav-buttons {
+    position: fixed;
+    bottom: 50%;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.nav-button {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: none;
+    background: rgba(51, 51, 51, 0.8);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background: #555;
+    transform: scale(1.1);
+}
+
+.garbage-pile {
+    position: absolute;
+    right: 20%;
+    bottom: 20%;
+    width: 150px;
+    height: 100px;
+    background: #8b4513;
+    border-radius: 50% 50% 10px 10px;
+}
+
+.tree {
+    position: absolute;
+    bottom: 35%;
+    width: 15vw;
+    /* ปรับตามความกว้างหน้าจอ */
+    min-width: 200px;
+    z-index: 2;
+    transition: transform 0.5s ease;
+}
+
+.tree img {
+    width: 250px;
+    height: auto;
+}
+
+.bench {
+    position: absolute;
+    bottom: 21%;
+    width: 15vw;
+    min-width: 160px;
+    z-index: 2;
+    transition: transform 0.5s ease;
+}
+
+.bench img {
+    width: 230px;
+    /* Adjust based on your bench image size */
+    height: auto;
+    filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.3));
+}
+
+.wasteBin {
+    position: fixed;
+    bottom: 15.5%;
+    left: 65%;
+    width: 15vw;
+    min-width: 160px;
+    /* Same as tree positioning */
+    z-index: 2;
+    /* transition: transform 0.5s ease; */
+}
+
+.wasteBin img {
+    width: 230px;
+    /* Adjust based on your bench image size */
+    height: auto;
+    filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.3));
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 768px) {
+    .background:nth-child(3) .tree {
+        left: 65% !important;
+    }
+
+    body {
+        padding: 10px;
+    }
+
+    .scene-container {
+        width: calc(100vw - 20px);
+        height: calc(100vh - 20px);
+    }
+
+    .background {
+        width: calc((100vw - 20px));
+    }
+
+    .mountain-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .mountain-bg img {
+        width: 100%;
+        height: 50%;
+        object-fit: cover;
+        object-position: center bottom;
+        position: absolute;
+        bottom: 35%;
+        margin-top: 60%;
+    }
+
+    .mountain-bg-flip {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+    }
+
+    .mountain-bg-flip img {
+        transform: scaleX(-1);
+        width: 100%;
+        height: 50%;
+        object-fit: cover;
+        object-position: center bottom;
+        position: absolute;
+        bottom: 35%;
+        margin-top: 60%;
+    }
+
+    /* ปรับขนาดและตำแหน่งอื่นๆ ให้เหมาะสม */
+    .grass-hill {
+        height: 150px;
+        /* ปรับความสูงของเนินหญ้า */
+    }
+
+    .tree {
+        bottom: 25%;
+        /* ปรับตำแหน่งต้นไม้ */
+    }
+
+    .tree img {
+        width: 250px;
+        /* ปรับขนาดต้นไม้ให้เล็กลง */
+        z-index: 99;
+    }
+
+    .bench {
+        bottom: 17%;
+        /* Match tree responsive positioning */
+    }
+
+    .bench img {
+        width: 120px;
+        z-index: 99;
+        filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.3));
+        /* bottom: 21%; */
+    }
+
+    .wasteBin {
+        bottom: 15%;
+        left: 70%;
+        /* Match tree responsive positioning */
+    }
+
+    .wasteBin img {
+        width: 160px;
+        z-index: 15;
+        filter: drop-shadow(0px 8px 4px rgba(0, 0, 0, 0.3));
+        /* bottom: 21%; */
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .nav-buttons {
+        padding: 0 10px;
+    }
+
+    .nav-button {
+        width: 60px;
+        height: 60px;
+    }
+
+    .bin {
+        left: 15%;
+        bottom: 12%;
+    }
+
+    .mountain-bg img {
+        width: 140%;
+        /* เพิ่มขนาดภาพให้ใหญ่ขึ้นอีกสำหรับหน้าจอเล็ก */
+        bottom: 40%;
+        /* ปรับตำแหน่งให้เหมาะสมกับหน้าจอเล็ก */
+        left: -20%;
+        /* ปรับตำแหน่งซ้าย-ขวา */
+        transform: scale(1.3);
+        /* ขยายภาพให้ใหญ่ขึ้นอีก */
+    }
+
+    .mountain-bg-flip img {
+        width: 140%;
+        bottom: 40%;
+        left: -20%;
+        transform: scaleX(-1) scale(1.3);
+        /* ขยายภาพให้ใหญ่ขึ้นอีก */
+    }
+
+    .tree img {
+        width: 200px;
+        /* ปรับขนาดต้นไม้ให้เล็กลงอีก */
+    }
+
+    .bench img {
+        width: 160px;
+        filter: drop-shadow(0px 6px 3px rgba(0, 0, 0, 0.3));
+        /* bottom: 20%; */
+    }
+}
