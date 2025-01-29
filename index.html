@@ -199,6 +199,7 @@
             height: auto;
         }
 
+        /* obj page 1 */
         .bench {
             position: absolute;
             bottom: 16%;
@@ -214,6 +215,31 @@
             height: auto;
             filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.3));
         }
+
+        .headphone {
+            position: absolute;
+            bottom: 5%;
+            left: 70%;
+            width: 15vw;
+            min-width: 160px;
+            z-index: 2;
+            transition: transform 0.5s ease;
+        }
+
+        .headphone img {
+            width: 60px;
+            /* Adjust based on your bench image size */
+            height: auto;
+            filter: drop-shadow(0px 10px 5px rgba(0, 0, 0, 0.3));
+        }
+
+        .textBox {
+            display: none;
+            z-index: 999;
+        }
+
+
+        /* obj page 2 */
 
         .wasteBin {
             position: absolute;
@@ -409,6 +435,9 @@
                 <div class="bench" style="left: 35%;">
                     <img src="./assets/img/brench.png" alt="">
                 </div>
+                <div class="headphone" id="headphone">
+                    <img src="./assets/img/headphones.png" alt="">
+                </div>
             </div>
 
             <!-- Scene 2 -->
@@ -459,6 +488,10 @@
             <button class="nav-button" onclick="navigate(-1)"><i class="fa-solid fa-angle-left"></i></button>
             <button class="nav-button" onclick="navigate(1)"><i class="fa-solid fa-angle-right"></i></button>
         </div>
+
+        <div class="textBox" id="textBox">
+            <h1>กดทำไม</h1>
+        </div>
     </div>
 
     <script>
@@ -466,6 +499,14 @@
         const maxScroll = 3;
         const content = document.getElementById('scrollContent');
         const bin = document.getElementById('recycleBin');
+        const headphone = document.getElementById('headphone');
+
+        headphone.addEventListener('click', () => {
+            const textBox = document.querySelector('.textBox');
+            textBox.style.display = 'block';
+            textBox.style.zIndex = '999';
+            headphone.style.display = 'none';
+        });
 
         function navigate(direction) {
             currentPosition = Math.max(0, Math.min(currentPosition + direction, maxScroll));
